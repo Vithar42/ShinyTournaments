@@ -42,6 +42,7 @@ tagList(
              tabPanel("Paramaters", 
                       wellPanel(h2("Enter some Paramaters that will be used to build the pools and brackets."),
                                 sliderInput("n_teams", "Number of Teams:", 2, 16, 16),
+                                sliderInput("n_pools", "Number of Pools:", 1, 4, 4),
                                 radioButtons("tourny_type", "Tournament Type",
                                              choices = c("Pool Play", "Round Robin"), inline = TRUE),
                                 numericInput("max_dif", "Maximum Goal Differential:", 8, min = 1, max = 25),
@@ -70,7 +71,8 @@ tagList(
              tabPanel("Tournament",
                       sidebarPanel(
                         "Enter list of team names, order does not matter.",
-                        rHandsontableOutput("TeamList"), 
+                        rHandsontableOutput("table_tl"), 
+                        actionButton("RandTeam", "Randomize Team Order"),
                         width = 3
                         ),
                       mainPanel(
@@ -78,6 +80,7 @@ tagList(
                           tabPanel("Pools",
                                    #TODO Make random pools from the list of teams enterd.
                                    h4("TODO: Make random pools from the list of teams entered."),
+                                   tableOutput('pools'),
                                    #TODO Make schedule table from the pools generated in the previous TODO
                                    h4("TODO: Make schedule table from the pools generated in the previous TODO"),
                                    #TODO Make scores editable and interactive from the schedule.

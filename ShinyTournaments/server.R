@@ -15,20 +15,14 @@ shinyServer(function(input, output) {
 
         #data.in <- reactiveValues(values = daten)
         
-        output$TeamList <- renderRHandsontable({
-          
-          team_table <- tibble(TeamName = seq(1, input$n_teams, 1)) %>%
-            mutate(TeamName = "")
-          
-          rhandsontable(team_table, width = 300) %>%
-            hot_cols(colWidths = 200)
-          
-        })
+
+        # Loads page for pools
+        source("01_Teams.R", local = TRUE) 
         
         # Loads page for pools
-        source("01_Pools.R") 
+        source("02_Pools.R", local = TRUE) 
         
         # Loads page for brackets
-        source("02_Brackets.R") 
+        source("03_Brackets.R", local = TRUE) 
 
 })
